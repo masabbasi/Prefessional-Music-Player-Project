@@ -195,3 +195,7 @@ text-align: left;
   font-size: 1.1rem;
   text-align: left;
 }
+
+.playing {
+  color: green;
+}

@@ -13,7 +13,7 @@ const myVars = {
     next: $.getElementById('next'),
     play: $.getElementById('play'),
     list: $.getElementById('music-list'),
-    
+
     isPlaying:false,
     songsIndex:0
 }
@@ -39,6 +39,7 @@ const mySongs = [
     }
 ]
 
+function loadPlayList () {
 for (let i = 0 ; i<mySongs.length;i++) {
     let createDivOne =$.createElement("div");
     createDivOne.classList.add('track')
@@ -57,12 +58,15 @@ for (let i = 0 ; i<mySongs.length;i++) {
     createDivOne.appendChild(createImg);
     createDivOne.appendChild(createDivTwo);
     createDivOne.addEventListener('click',function () {
-        createDivOne.style.backgroundColor="#13260c"
+        createDivOne.classList.add('playing')
         loadSong(mySongs[i])
         playSong()
     })
     myVars.list.appendChild(createDivOne);
 }
+}
+
+loadPlayList ()
 
 function playSong () {
 myVars.isPlaying=true;
@@ -120,7 +124,6 @@ function switchPlayPause () {
 function loadSong (song) {
     myVars.title.textContent=song.title;
     myVars.artist.textContent=song.artist;
-
     myVars.cover.classList.remove('animation');
     setTimeout(()=>{
         myVars.cover.src=song.cover;
