@@ -13,10 +13,13 @@ const myVars = {
     next: $.getElementById('next'),
     play: $.getElementById('play'),
     list: $.getElementById('music-list'),
+    track: $.getElementsByClassName('track'),
 
     isPlaying:false,
     songsIndex:0
 }
+
+
 
 const mySongs = [
     {
@@ -57,7 +60,23 @@ for (let i = 0 ; i<mySongs.length;i++) {
     createDivTwo.appendChild(createDivTwoTwo);
     createDivOne.appendChild(createImg);
     createDivOne.appendChild(createDivTwo);
+
     createDivOne.addEventListener('click',function () {
+        // for (i=0;i<=myVars.track.length;i++) {
+        //     // myVars.track[i].classList.remove('playing')
+        // }
+
+        // myVars.track.foreach(function(item){
+        //     // item.classList.remove('playing')
+        //     console.log(item);
+        // })
+
+        const tracks = [...$.querySelectorAll(".track")];
+        console.log(tracks);
+        tracks.forEach((track) => {
+         track.classList.remove("playing");
+        });
+
         createDivOne.classList.add('playing')
         loadSong(mySongs[i])
         playSong()
@@ -73,6 +92,13 @@ myVars.isPlaying=true;
 myVars.play.classList.replace('fa-play','fa-pause');
 myVars.play.setAttribute('title','Play');
 myVars.audio.play();
+
+const tracks = [...$.querySelectorAll(".track")];
+tracks.forEach((track) => {
+ track.classList.remove("playing");
+});
+tracks[myVars.songsIndex].classList.add("playing");
+console.log(track[myVars.songsIndex]);
 }
 
 
@@ -124,13 +150,14 @@ function switchPlayPause () {
 function loadSong (song) {
     myVars.title.textContent=song.title;
     myVars.artist.textContent=song.artist;
-    myVars.cover.classList.remove('animation');
-    setTimeout(()=>{
-        myVars.cover.src=song.cover;
-        myVars.cover.classList.add('animation');
-    },100)
+    // myVars.cover.classList.remove('animation');
+    myVars.cover.src=song.cover;
+    // setTimeout(()=>{
+    //     myVars.cover.classList.add('animation');
+    // },100)
     myVars.background.src=song.cover;
     myVars.audio.src=song.src;
+
 }
 
 function setProgressBar(event) {
