@@ -60,28 +60,18 @@ for (let i = 0 ; i<mySongs.length;i++) {
     createDivTwo.appendChild(createDivTwoTwo);
     createDivOne.appendChild(createImg);
     createDivOne.appendChild(createDivTwo);
-
+    myVars.list.appendChild(createDivOne);
     createDivOne.addEventListener('click',function () {
-        // for (i=0;i<=myVars.track.length;i++) {
-        //     // myVars.track[i].classList.remove('playing')
-        // }
-
-        // myVars.track.foreach(function(item){
-        //     // item.classList.remove('playing')
-        //     console.log(item);
-        // })
-
         const tracks = [...$.querySelectorAll(".track")];
         console.log(tracks);
         tracks.forEach((track) => {
-         track.classList.remove("playing");
+          track.classList.remove("playing");
         });
-
-        createDivOne.classList.add('playing')
-        loadSong(mySongs[i])
-        playSong()
+        createDivOne.classList.add("playing");
+        myVars.songsIndex = i;
+        loadSong(mySongs[myVars.songsIndex]);
+        playSong();
     })
-    myVars.list.appendChild(createDivOne);
 }
 }
 
@@ -92,13 +82,11 @@ myVars.isPlaying=true;
 myVars.play.classList.replace('fa-play','fa-pause');
 myVars.play.setAttribute('title','Play');
 myVars.audio.play();
-
 const tracks = [...$.querySelectorAll(".track")];
 tracks.forEach((track) => {
  track.classList.remove("playing");
 });
 tracks[myVars.songsIndex].classList.add("playing");
-console.log(track[myVars.songsIndex]);
 }
 
 
